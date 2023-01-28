@@ -1,0 +1,64 @@
+import os
+from datetime import datetime
+
+def current_datetime():
+    return datetime.now().strftime("%Y-%m-%d")
+
+JINJA_CONTEXT_ADDONS = {
+    "current_datetime": current_datetime,
+    'my_crazy_macro': lambda x: x*2,
+}
+
+
+
+APP_NAME= "Arcapps D|W "
+APP_ICON = "https://erp.excelbd.com/files/superset-logo-horiz.png"
+FAVICONS = [{"href": "https://erp.excelbd.com/files/favicon.png"}] 
+
+
+SQL_MAX_ROW = 10000000
+SUPERSET_WEBSERVER_TIMEOUT = 600
+SQLLAB_TIMEOUT = 600
+
+MAPBOX_API_KEY = os.getenv('MAPBOX_API_KEY', '')
+CACHE_CONFIG = {
+    'CACHE_TYPE': 'redis',
+    'CACHE_DEFAULT_TIMEOUT': 300,
+    'CACHE_KEY_PREFIX': 'superset_',
+    'CACHE_REDIS_HOST': 'redis',
+    'CACHE_REDIS_PORT': 6379,
+    'CACHE_REDIS_DB': 1,
+    'CACHE_REDIS_URL': 'redis://redis:6379/1'}
+SQLALCHEMY_DATABASE_URI = \
+    'postgresql+psycopg2://superset:superset@postgres:5432/superset'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+SECRET_KEY = 'excelsecret'
+ENABLE_PROXY_FIX = True
+
+SQLLAB_CTAS_NO_LIMIT = True
+
+FEATURE_FLAGS = {
+        "ALERT_REPORTS": True,
+        "ENABLE_TEMPLATE_PROCESSING": True,
+        "THUMBNAILS": True,
+      "THUMBNAILS_SQLA_LISTENERS": True,
+        'CACHE_TYPE': 'RedisCache',
+        'CACHE_DEFAULT_TIMEOUT': 86400,
+        'CACHE_KEY_PREFIX': 'superset_filter_',
+        'CACHE_REDIS_URL': 'redis://redis:6379/1'
+        }
+        
+# Cache 
+
+DATA_CACHE_CONFIG = {
+    "CACHE_TYPE": "SupersetMetastoreCache",
+    "CACHE_KEY_PREFIX": "superset_results",  # make sure this string is unique to avoid collisions
+    "CACHE_DEFAULT_TIMEOUT": 86400,  # 60 seconds * 60 minutes * 24 hours
+}
+
+# On Redis
+from cachelib.redis import RedisCache
+RESULTS_BACKEND = RedisCache(
+    host='redis', port=6379, key_prefix='superset_results')
+
+RESULTS_BACKEND_USE_MSGPACK = False

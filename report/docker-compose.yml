@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  redis:
+    image: redis
+    networks:
+      - superset-network
+    volumes:
+      - redis:/data
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  postgres:
+    image: postgres:14.1-alpine
+    #restart: always
+    networks:
+      - superset-network
+    environment:
+      POSTGRES_DB: superset
+      POSTGRES_PASSWORD: superset
+      POSTGRES_USER: superset
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  superset:
+    image: amancevice/superset:${VERSION?Variable VERSION not set}
+    #restart: always
+    environment:
+      MAPBOX_API_KEY: ${MAPBOX_API_KEY}
+    ports:
+     - "9099:8088"
+    networks:
+      - superset-network
+    deploy:
+      restart_policy:
+        condition: on-failure
+    configs:
+      - source: superset_config
+        target: /superset_config.py
+
+configs:
+  superset_config:
+    external: true
+
+volumes:
+  postgres:
+  redis:
+
+networks:
+  superset-network:
+    external: false
