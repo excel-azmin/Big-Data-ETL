@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: mongodb_source
+    description: 'A data build pipeline'
+    database: mongodb_source
+    schema: rma_server
+    tables:
+      - name: item
+        description: 'All item details'
