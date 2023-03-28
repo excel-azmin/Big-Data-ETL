@@ -1,0 +1,28 @@
+[2023-02-05T03:23:42.171+0000] {processor.py:153} INFO - Started process (PID=34) to work on /opt/airflow/dags/dag_airbyte_example.py
+[2023-02-05T03:23:42.172+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/dag_airbyte_example.py for tasks to queue
+[2023-02-05T03:23:42.173+0000] {logging_mixin.py:137} INFO - [2023-02-05T03:23:42.173+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/dag_airbyte_example.py
+[2023-02-05T03:23:42.179+0000] {logging_mixin.py:137} INFO - [2023-02-05T03:23:42.177+0000] {dagbag.py:343} ERROR - Failed to import: /opt/airflow/dags/dag_airbyte_example.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 339, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_airbyte_example.py", line 3, in <module>
+    from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
+ModuleNotFoundError: No module named 'airflow.providers.airbyte'
+[2023-02-05T03:23:42.180+0000] {processor.py:755} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_airbyte_example.py
+[2023-02-05T03:23:42.208+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/dag_airbyte_example.py took 0.041 seconds
+[2023-02-05T03:24:13.225+0000] {processor.py:153} INFO - Started process (PID=74) to work on /opt/airflow/dags/dag_airbyte_example.py
+[2023-02-05T03:24:13.226+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/dag_airbyte_example.py for tasks to queue
+[2023-02-05T03:24:13.227+0000] {logging_mixin.py:137} INFO - [2023-02-05T03:24:13.227+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/dag_airbyte_example.py
+[2023-02-05T03:24:13.231+0000] {logging_mixin.py:137} INFO - [2023-02-05T03:24:13.230+0000] {dagbag.py:343} ERROR - Failed to import: /opt/airflow/dags/dag_airbyte_example.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/dagbag.py", line 339, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_airbyte_example.py", line 3, in <module>
+    from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperator
+ModuleNotFoundError: No module named 'airflow.providers.airbyte'
+[2023-02-05T03:24:13.232+0000] {processor.py:755} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_airbyte_example.py
+[2023-02-05T03:24:13.259+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/dag_airbyte_example.py took 0.036 seconds
